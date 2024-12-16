@@ -1,0 +1,7 @@
+{
+    "babel": true,
+    "env": {
+      "type": "module"
+    }
+  }
+  
