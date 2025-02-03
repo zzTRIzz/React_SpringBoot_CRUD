@@ -9,9 +9,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type User not found advice.
+ */
 @ControllerAdvice
 public class UserNotFoundAdvice extends RuntimeException{
 
+    /**
+     * Exception handler map.
+     *
+     * @param userNotFoundException the user not found exception
+     * @return the map
+     */
     @ResponseBody
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

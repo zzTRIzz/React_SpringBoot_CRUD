@@ -3,38 +3,66 @@ package com.example.demo.controller;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * The type User controller.
+ */
 @RestController
 //@CrossOrigin(value = "http://localhost:3000")
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class UserController {
-    
-    //triển khai các phương thức CRUD
+
+    /**
+     * The User service.
+     */
     @Autowired
     UserService userService;
+
+    /**
+     * Get all users list.
+     *
+     * @return the list
+     */
     @GetMapping("/user")
     public List<User> getAllUsers(){
         return userService.getAll();
     }
 
+    /**
+     * New user user.
+     *
+     * @param newUser the new user
+     * @return the user
+     */
     @PostMapping("/add")
     public User newUser(@RequestBody User newUser){
         return userService.save(newUser);
     }
 
+    /**
+     * Get user by id user.
+     *
+     * @param id the id
+     * @return the user
+     */
     @GetMapping("/user/{id}")
     public User getUserById(@PathVariable Integer id){
         return userService.getUserById(id);
     }
 
+    /**
+     * Update user by id response entity.
+     *
+     * @param id   the id
+     * @param user the user
+     * @return the response entity
+     */
     @PutMapping("/user/{id}")
     public ResponseEntity<User> updateUserById(@PathVariable Integer id, @RequestBody User user) {
         User existingUser = userService.getUserById(id);
@@ -47,6 +75,12 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    /**
+     * Delete response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/user/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id) {
         userService.deleteById(id);
