@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "AppUser")
+@Table(name = "app_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,14 +16,11 @@ public class User {
         this.name = name;
         this.email = email;
     }
-
     public User() {
     }
-
     public Integer getId() {
         return this.id;
     }
-
     public String getUsername() {
         return this.username;
     }
